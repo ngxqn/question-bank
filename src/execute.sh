@@ -21,10 +21,10 @@ if [ "$tong_so_cau" -ne "$tong_so_dap_an" ]; then
 fi
 
 # =====================================================================
-# Them cau hoi trac nghiem vao file Cauhoi.txt
+# Them cau hoi & dap an
 # =====================================================================
-them_cau_hoi() {
-    echo "--- THEM CAU HOI MOI ---"
+them_cau_hoi_va_dap_an() {
+    echo "--- THEM CAU HOI VA DAP AN MOI ---"
     read -p "Nhap noi dung cau hoi (Vd: Cau hoi A.x B.y C.z D.t): " noi_dung
     
     if [ -z "$noi_dung" ]; then
@@ -32,15 +32,6 @@ them_cau_hoi() {
         return
     fi
     
-    echo "$noi_dung" >> "$FILE_CAUHOI"
-    echo "=> Da them cau hoi thanh cong"
-}
-
-# =====================================================================
-# Them cau tra loi vao file Traloi.txt
-# =====================================================================
-them_dap_an() {
-    echo "--- THEM DAP AN DUNG ---"
     read -p "Nhap dap an tuong ung (A/B/C/D): " dap_an
     
     # Chuyen thanh chu hoa va xoa khoang trang
@@ -48,11 +39,13 @@ them_dap_an() {
     
     if [[ ! "$dap_an" =~ ^[A-D]$ ]]; then
         echo "Loi: Dap an khong hop le! Vui long chi nhap A, B, C, hoac D."
+        echo "Chua them cau hoi va dap an vao he thong."
         return
     fi
     
+    echo "$noi_dung" >> "$FILE_CAUHOI"
     echo "$dap_an" >> "$FILE_TRALOI"
-    echo "=> Da them dap an thanh cong."
+    echo "=> Da them cau hoi va dap an thanh cong!"
 }
 
 # =====================================================================
@@ -146,24 +139,22 @@ while true; do
     echo "========================================"
     echo "    QUAN LY NGAN HANG CAU HOI"
     echo "========================================"
-    echo "1. Them cau hoi"
-    echo "2. Them cau tra loi dung"
-    echo "3. Xuat de va cham diem"
-    echo "4. Thoat"
+    echo "1. Them cau hoi va dap an"
+    echo "2. Xuat de va cham diem"
+    echo "3. Thoat"
     echo "========================================"
-    read -p "Vui long chon chuc nang (1-4): " lua_chon
+    read -p "Vui long chon chuc nang (1-3): " lua_chon
     echo ""
 
     case $lua_chon in
-        1) them_cau_hoi ;;
-        2) them_dap_an ;;
-        3) xuat_de_va_cham_diem ;;
-        4) 
+        1) them_cau_hoi_va_dap_an ;;
+        2) xuat_de_va_cham_diem ;;
+        3) 
             echo "Tam biet"
             exit 0 
             ;;
         *) 
-            echo "Lua chon khong hop le. Vui long chon tu 1 den 4" 
+            echo "Lua chon khong hop le. Vui long chon tu 1 den 3" 
             ;;
     esac
 done
