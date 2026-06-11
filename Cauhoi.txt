@@ -1,0 +1,52 @@
+1 + 1 = ? A.1 B.2 C.3 D.4
+2 + 2 = ? A.1 B.2 C.4 D.8
+Lệnh nào dùng để cấp quyền thực thi cho file script trong Linux? A. chmod +x B. chown C. mkdir D. nano
+Dòng đầu tiên của một file Bash script (#!/bin/bash) được gọi là gì? A. Header B. Shebang C. Comment D. Command
+Trong Bash, toán tử nào dùng để so sánh BẰNG giữa các số nguyên? A. -ne B. -gt C. -eq D. -lt
+Ngôn ngữ lập trình nào thường được sử dụng để viết kịch bản tự động hóa trên Linux? A. HTML B. Bash C. CSS D. SQL
+Trong Bash, để khai báo biến 'name' có giá trị 'Tam' ta viết thế nào? A. name = Tam B. name:=Tam C. name="Tam" D. $name="Tam"
+Lệnh nào dùng để in một dòng văn bản ra màn hình Terminal? A. read B. echo C. cat D. ls
+Ký hiệu nào dùng để lấy giá trị của một biến trong Bash? A. @ B. # C. $ D. &
+Lệnh nào dùng để hiển thị đường dẫn của thư mục hiện tại? A. ls B. cd C. pwd D. clear
+Để kiểm tra một file có tồn tại hay không trong câu lệnh if, ta dùng tùy chọn nào? A. -d B. -f C. -z C. -n
+Lệnh nào dùng để đọc dữ liệu nhập vào từ bàn phím của người dùng? A. echo B. print C. read D. input
+Thành phần nào trong kiến trúc máy tính chịu trách nhiệm thực hiện các phép toán số học và logic? A. RAM B. ALU C. BUS D. ROM
+Bộ nhớ RAM của máy tính thuộc loại bộ nhớ nào? A. Bộ nhớ thứ cấp B. Bộ nhớ khả biến (mất dữ liệu khi mất điện) C. Bộ nhớ chỉ đọc D. Bộ nhớ từ
+Đâu là một hệ điều hành mã nguồn mở mã phổ biến? A. Windows 11 B. macOS C. Linux D. iOS
+Trong mạng máy tính, giao thức IP thuộc tầng nào trong mô hình OSI? A. Tầng vật lý B. Tầng liên kết dữ liệu C. Tầng mạng D. Tầng ứng dụng
+Cổng mặc định (Port) của giao thức HTTP là bao nhiêu? A. 443 B. 21 C. 80 D. 22
+Cổng mặc định (Port) của giao thức HTTPS bảo mật là bao nhiêu? A. 80 B. 443 C. 8080 D. 3306
+Trong lập trình Java, từ khóa nào dùng để định nghĩa một lớp kế thừa từ lớp khác? A. implements B. extends C. inherits D. exports
+Lớp nào là lớp cha của tất cả các lớp trong ngôn ngữ lập trình Java? A. String B. Class C. Object D. System
+Trong cấu trúc dữ liệu, nguyên lý hoạt động của Stack (Ngăn xếp) là gì? A. LIFO (Vào sau ra trước) B. FIFO (Vào trước ra trước) C. LILO D. Ngẫu nhiên
+Trong cấu trúc dữ liệu, nguyên lý hoạt động của Queue (Hàng đợi) là gì? A. LIFO B. FIFO (Vào trước ra trước) C. Trộn lẫn D. Không có quy luật
+Hệ quản trị cơ sở dữ liệu nào sau đây là hệ quản trị CSDL quan hệ? A. MongoDB B. MySQL C. Redis D. Cassandra
+Câu lệnh SQL nào dùng để lấy dữ liệu từ một bảng? A. GET B. EXTRACT C. SELECT D. FETCH
+Trong SQL, từ khóa nào dùng để lọc dữ liệu theo điều kiện? A. GROUP BY B. WHERE C. ORDER BY D. HAVING
+Trong SQL, từ khóa nào dùng để sắp xếp kết quả trả về? A. SORT BY B. WHERE C. ORDER BY D. GROUP BY
+Hàm nào trong SQL dùng để đếm số lượng dòng dữ liệu? A. SUM() B. COUNT() C. AVG() D. MAX()
+Ngôn ngữ nào được sử dụng để định dạng cấu trúc nội dung của một trang web? A. CSS B. JavaScript C. HTML5 D. PHP
+Định dạng CSS nào dùng để thay đổi màu chữ của một phần tử? A. background-color B. color C. text-color D. font-style
+Ngôn ngữ nào chạy trực tiếp trên trình duyệt để tạo tính tương tác cho trang web? A. PHP B. MySQL C. JavaScript D. Python
+Ký hiệu mã nguồn mở Git dùng để làm gì? A. Biên dịch code B. Quản lý các phiên bản mã nguồn C. Chạy server D. Thiết kế giao diện
+Đâu là một phương thức truyền dữ liệu phổ biến trong giao thức HTTP? A. PUSH B. GET C. SEND D. FETCH
+Phương thức HTTP nào thường dùng để gửi dữ liệu từ form lên server để tạo mới? A. GET B. POST C. DELETE D. OPTIONS
+Đâu là một framework/thư viện nổi tiếng của JavaScript dùng để làm Frontend? A. Laravel B. React C. Django D. Spring Boot
+Trong lập trình hướng đối tượng (OOP), khả năng một đối tượng có nhiều hình thái khác nhau gọi là gì? A. Đóng gói B. Kế thừa C. Đa hình D. Trừu tượng
+Tiến trình (Process) trong hệ điều hành có thể hiểu là gì? A. Một chương trình đang được thực thi B. Một file lưu trên ổ cứng C. Một hàm trong code D. Một đoạn RAM trống
+Trong Git, lệnh nào dùng để tải mã nguồn từ một kho chứa (repository) từ xa về máy cục bộ? A. git push B. git commit C. git clone D. git add
+Mã trạng thái HTTP (HTTP Status Code) nào biểu thị lỗi "Not Found" (Không tìm thấy trang)? A. 200 B. 403 C. 404 D. 500
+Mã trạng thái HTTP nào biểu thị một yêu cầu đã thành công (OK)? A. 200 B. 201 C. 400 D. 404
+Trong Bash Script, cấu trúc nào dùng để duyệt qua một danh sách phần tử? A. case B. if-else C. for loop D. exit
+Ký hiệu nào dùng để chuyển hướng kết quả của một lệnh và ghi ĐÈ vào một file trong Linux? A. > B. >> C. | D. <
+Ký hiệu nào dùng để chuyển hướng kết quả của một lệnh và ghi NỐI TIẾP vào cuối file trong Linux? A. > B. >> C. | D. &
+Lệnh nào dùng để xóa một file trong hệ điều hành Linux? A. rmdir B. delete C. rm D. clear
+Kiểu dữ liệu nào chỉ nhận hai giá trị TRUE hoặc FALSE? A. Integer B. String C. Boolean D. Float
+Đâu là một định dạng dữ liệu thường dùng để trao đổi dữ liệu giữa Client và Server? A. JSON B. HTML C. TXT D. MP4
+Trong lập trình, lỗi cú pháp (Syntax Error) xảy ra khi nào? A. Khi thuật toán bị sai logic B. Khi viết code sai quy tắc ngôn ngữ C. Khi máy tính hết RAM D. Khi mất kết nối Internet
+Thuật toán sắp xếp nào có ý tưởng đổi chỗ các phần tử kế cận nếu chúng ngược thứ tự? A. Quick Sort B. Bubble Sort (Sắp xếp nổi bọt) C. Binary Search D. Merge Sort
+Trình dịch nào chịu trách nhiệm thực thi mã bytecode của Java? A. JDK B. JVM (Java Virtual Machine) C. JRE D. Compiler
+Trong PHP, các biến luôn bắt đầu bằng ký tự nào? A. # B. @ C. $ D. &
+Trong hệ điều hành, hiện tượng hai hoặc nhiều tiến trình chờ đợi lẫn nhau mãi mãi tạo ra trạng thái gì? A. Starvation B. Deadlock (Bế tắc) C. Concurrency D. Paging
+Thuật toán tìm kiếm nhị phân (Binary Search) yêu cầu danh sách đầu vào phải như thế nào? A. Đã được sắp xếp B. Có số lượng phần tử chẵn C. Toàn số nguyên D. Rỗng
+Hệ thống phân giải tên miền thành địa chỉ IP được gọi là gì? A. DHCP B. DNS C. FTP D. NAT
