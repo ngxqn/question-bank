@@ -1,83 +1,83 @@
 #!/bin/bash
 
-# Dia chi file
+# Địa chỉ file
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 FILE_CAUHOI="$SCRIPT_DIR/../data/Cauhoi.txt"
 FILE_TRALOI="$SCRIPT_DIR/../data/Traloi.txt"
 
-# Kiem tra ton tai cua cac file truoc khi chay
+# Kiểm tra tồn tại của các file
 if [ ! -f "$FILE_CAUHOI" ] || [ ! -f "$FILE_TRALOI" ]; then
-    echo "Loi: Khong tim thay file $FILE_CAUHOI hoac $FILE_TRALOI!"
+    echo "Lỗi: Không tìm thấy file $FILE_CAUHOI hoặc $FILE_TRALOI!"
     exit 1
 fi
 
-# Kiem tra so luong cau hoi va dap an co khop nhau khong
+# Kiểm tra số lượng câu hỏi và đáp án có khớp nhau không
 tong_so_cau=$(wc -l < "$FILE_CAUHOI")
 tong_so_dap_an=$(wc -l < "$FILE_TRALOI")
 if [ "$tong_so_cau" -ne "$tong_so_dap_an" ]; then
-    echo "Canh bao: So luong cau hoi ($tong_so_cau) va dap an ($tong_so_dap_an) khong khop!"
-    echo "Vui long kiem tra lai hai file du lieu."
+    echo "Cảnh báo: Số lượng câu hỏi ($tong_so_cau) và đáp án ($tong_so_dap_an) không khớp!"
+    echo "Vui lòng kiểm tra lại hai file dữ liệu."
     echo ""
 fi
 
 # =====================================================================
-# Them cau hoi & dap an
+# Thêm câu hỏi & đáp án
 # =====================================================================
 them_cau_hoi_va_dap_an() {
-    echo "--- THEM CAU HOI VA DAP AN MOI ---"
-    read -p "Nhap noi dung cau hoi (Vd: Cau hoi A.x B.y C.z D.t): " noi_dung
+    echo "--- THÊM CÂU HỎI VÀ ĐÁP ÁN MỚI ---"
+    read -p "Nhập nội dung câu hỏi (Vd: Câu hỏi A.x B.y C.z D.t): " noi_dung
     
     if [ -z "$noi_dung" ]; then
-        echo "Loi: Noi dung cau hoi khong hop le!"
+        echo "Lỗi: Nội dung câu hỏi không hợp lệ!"
         return
     fi
     
-    read -p "Nhap dap an tuong ung (A/B/C/D): " dap_an
+    read -p "Nhập đáp án tương ứng (A/B/C/D): " dap_an
     
-    # Chuyen thanh chu hoa va xoa khoang trang
+    # Chuyển thành chữ hoa và xóa khoảng trắng
     dap_an=$(echo "$dap_an" | tr -d '[:space:]' | tr '[:lower:]' '[:upper:]')
     
     if [[ ! "$dap_an" =~ ^[A-D]$ ]]; then
-        echo "Loi: Dap an khong hop le! Vui long chi nhap A, B, C, hoac D."
-        echo "Chua them cau hoi va dap an vao he thong."
+        echo "Lỗi: Đáp án không hợp lệ! Vui lòng chỉ nhập A, B, C hoặc D."
+        echo "Chưa thêm câu hỏi và đáp án vào hệ thống."
         return
     fi
     
     echo "$noi_dung" >> "$FILE_CAUHOI"
     echo "$dap_an" >> "$FILE_TRALOI"
-    echo "=> Da them cau hoi va dap an thanh cong!"
+    echo "=> Đã thêm câu hỏi và đáp án thành công!"
 }
 
 # =====================================================================
-# Xuat de va cham diem
+# Xuất đề và chấm điểm
 # =====================================================================
 xuat_de_va_cham_diem() {
-    echo "--- XUAT DE THI NGAU NHIEN---"
+    echo "--- XUẤT ĐỀ VÀ CHẤM ĐIỂM ---"
     
     tong_so_cau=$(wc -l < "$FILE_CAUHOI")
     if [ "$tong_so_cau" -eq 0 ]; then
-        echo "Khong co cau hoi"
+        echo "Không có câu hỏi"
         return
     fi
     
-    echo "Chung toi dang co $tong_so_cau cau hoi."
-    read -p "Nhap so luong cau hoi ban muon lam: " so_luong
+    echo "Hiện tại có $tong_so_cau câu hỏi."
+    read -p "Nhập số lượng câu hỏi bạn muốn làm: " so_luong
     
     if [[ ! "$so_luong" =~ ^[0-9]+$ ]] || [ "$so_luong" -le 0 ] || [ "$so_luong" -gt "$tong_so_cau" ]; then
-        echo "Loi: So luong cau hoi khong hop le"
+        echo "Lỗi: Số lượng câu hỏi không hợp lệ."
         return
     fi
 
     echo "--------------------------------------------------"
-    echo "BAT DAU LAM BAI THI"
+    echo "BẮT ĐẦU LÀM BÀI THI"
     echo "--------------------------------------------------"
     
-    # Khai bao mang luu dong goc, dap an cua nguoi lam va dap an dung
+    # Khai báo mảng lưu dòng gốc, đáp án của người làm và đáp án đúng
     declare -a marray_dong_goc
     declare -a marray_bai_lam
     declare -a marray_dap_an_dung
     
-    # Tron cau hoi ngau nhien
+    # Trộn câu hỏi ngẫu nhiên
     cac_dong_ngau_nhien=$(shuf -i 1-"$tong_so_cau" -n "$so_luong")
     
     stt=0
@@ -85,12 +85,12 @@ xuat_de_va_cham_diem() {
         cau_hoi=$(sed -n "${dong}p" "$FILE_CAUHOI")
         dap_an_goc=$(sed -n "${dong}p" "$FILE_TRALOI" | tr -d '\r' | tr '[:lower:]' '[:upper:]')
         
-        # Hien thi cau hoi
+        # Hiển thị câu hỏi
         echo "Câu $((stt + 1)): $cau_hoi"
-        read -p "Cau tra loi cua ban: " lua_chon
+        read -p "Câu trả lời của bạn: " lua_chon
         lua_chon=$(echo "$lua_chon" | tr '[:lower:]' '[:upper:]')
         
-        # Luu thong tin vao mang
+        # Lưu thông tin vào mảng
         marray_dong_goc[$stt]=$dong
         marray_bai_lam[$stt]=$lua_chon
         marray_dap_an_dung[$stt]=$dap_an_goc
@@ -100,14 +100,14 @@ xuat_de_va_cham_diem() {
     done
 
     # =====================================================================
-    # IN BANG SO SANH 2 COT VA CHAM DIEM
+    # IN BẢNG SO SÁNH 2 CỘT VÀ CHẤM ĐIỂM
     # =====================================================================
     echo ""
     echo "======================================================="
-    echo "                 BANG SO SANH KET QUA                  "
+    echo "                 BẢNG SO SÁNH KẾT QUẢ                  "
     echo "======================================================="
-    # Dinh dang cot
-    printf "%-10s | %-20s | %-20s\n" "STT" "CAU TRA LOI CUA BAN" "DAP AN"
+    # Định dạng cột
+    printf "%-10s | %-20s | %-20s\n" "STT" "CÂU TRẢ LỜI CỦA BẠN" "ĐÁP ÁN"
     echo "-------------------------------------------------------"
     
     so_cau_dung=0
@@ -115,19 +115,19 @@ xuat_de_va_cham_diem() {
         user_ans=${marray_bai_lam[$i]}
         true_ans=${marray_dap_an_dung[$i]}
         
-        # Kiem tra dung sai
+        # Kiểm tra đúng sai
         if [ "$user_ans" == "$true_ans" ]; then
             ((so_cau_dung++))
         fi
-        # In tung dong ket qua tuong ung theo dang cot
-        printf "Cau %-6d | %-20s | %-20s\n" "$((i + 1))" "$user_ans" "$true_ans"
+        # In từng dòng kết quả tương ứng theo dạng cột
+        printf "Câu %-6d | %-20s | %-20s\n" "$((i + 1))" "$user_ans" "$true_ans"
     done
     
-    # TONG KET DIEM SO
+    # TỔNG KẾT ĐIỂM SỐ
     echo "======================================================="
-    echo "So cau dung: $so_cau_dung / $so_luong"
+    echo "Số câu đúng: $so_cau_dung / $so_luong"
     diem=$(awk -v dung="$so_cau_dung" -v tong="$so_luong" 'BEGIN { printf "%.2f", (dung * 10) / tong }')
-    echo "Diem: $diem / 10.0"
+    echo "Điểm: $diem / 10.0"
     echo "======================================================="
 }
 
@@ -137,24 +137,24 @@ xuat_de_va_cham_diem() {
 while true; do
     echo ""
     echo "========================================"
-    echo "    QUAN LY NGAN HANG CAU HOI"
+    echo "    QUẢN LÝ NGÂN HÀNG CÂU HỎI"
     echo "========================================"
-    echo "1. Them cau hoi va dap an"
-    echo "2. Xuat de va cham diem"
-    echo "3. Thoat"
+    echo "1. Thêm câu hỏi và đáp án"
+    echo "2. Xuất đề và chấm điểm"
+    echo "3. Thoát"
     echo "========================================"
-    read -p "Vui long chon chuc nang (1-3): " lua_chon
+    read -p "Vui lòng chọn chức năng (1-3): " lua_chon
     echo ""
 
     case $lua_chon in
         1) them_cau_hoi_va_dap_an ;;
         2) xuat_de_va_cham_diem ;;
         3) 
-            echo "Tam biet"
+            echo "Tạm biệt!"
             exit 0 
             ;;
         *) 
-            echo "Lua chon khong hop le. Vui long chon tu 1 den 3" 
+            echo "Lựa chọn không hợp lệ. Vui lòng chọn từ 1 đến 3" 
             ;;
     esac
 done

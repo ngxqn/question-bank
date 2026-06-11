@@ -8,7 +8,7 @@ Trong Bash, để khai báo biến 'name' có giá trị 'Tam' ta viết thế n
 Lệnh nào dùng để in một dòng văn bản ra màn hình Terminal? A. read B. echo C. cat D. ls
 Ký hiệu nào dùng để lấy giá trị của một biến trong Bash? A. @ B. # C. $ D. &
 Lệnh nào dùng để hiển thị đường dẫn của thư mục hiện tại? A. ls B. cd C. pwd D. clear
-Để kiểm tra một file có tồn tại hay không trong câu lệnh if, ta dùng tùy chọn nào? A. -d B. -f C. -z C. -n
+Để kiểm tra một file có tồn tại hay không trong câu lệnh if, ta dùng tùy chọn nào? A. -d B. -f C. -z D. -n
 Lệnh nào dùng để đọc dữ liệu nhập vào từ bàn phím của người dùng? A. echo B. print C. read D. input
 Thành phần nào trong kiến trúc máy tính chịu trách nhiệm thực hiện các phép toán số học và logic? A. RAM B. ALU C. BUS D. ROM
 Bộ nhớ RAM của máy tính thuộc loại bộ nhớ nào? A. Bộ nhớ thứ cấp B. Bộ nhớ khả biến (mất dữ liệu khi mất điện) C. Bộ nhớ chỉ đọc D. Bộ nhớ từ
