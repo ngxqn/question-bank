@@ -1,13 +1,23 @@
 #!/bin/bash
 
 # Dia chi file
-FILE_CAUHOI="Cauhoi.txt"
-FILE_TRALOI="Traloi.txt"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+FILE_CAUHOI="$SCRIPT_DIR/../data/Cauhoi.txt"
+FILE_TRALOI="$SCRIPT_DIR/../data/Traloi.txt"
 
 # Kiem tra ton tai cua cac file truoc khi chay
 if [ ! -f "$FILE_CAUHOI" ] || [ ! -f "$FILE_TRALOI" ]; then
-    echo "Loi: Khong tim thay file $FILE_CAUHOI hoac $FILE_TRALOI trong trong cung thu muc!"
+    echo "Loi: Khong tim thay file $FILE_CAUHOI hoac $FILE_TRALOI!"
     exit 1
+fi
+
+# Kiem tra so luong cau hoi va dap an co khop nhau khong
+tong_so_cau=$(wc -l < "$FILE_CAUHOI")
+tong_so_dap_an=$(wc -l < "$FILE_TRALOI")
+if [ "$tong_so_cau" -ne "$tong_so_dap_an" ]; then
+    echo "Canh bao: So luong cau hoi ($tong_so_cau) va dap an ($tong_so_dap_an) khong khop!"
+    echo "Vui long kiem tra lai hai file du lieu."
+    echo ""
 fi
 
 # =====================================================================
@@ -31,14 +41,16 @@ them_cau_hoi() {
 # =====================================================================
 them_dap_an() {
     echo "--- THEM DAP AN DUNG ---"
-    read -p "Nhap dap an tuong ung (Vd: A hoac x hoac A.x): " dap_an
+    read -p "Nhap dap an tuong ung (A/B/C/D): " dap_an
     
-    if [ -z "$dap_an" ]; then
-        echo "Loi: Dap an khong hop le"
+    # Chuyen thanh chu hoa va xoa khoang trang
+    dap_an=$(echo "$dap_an" | tr -d '[:space:]' | tr '[:lower:]' '[:upper:]')
+    
+    if [[ ! "$dap_an" =~ ^[A-D]$ ]]; then
+        echo "Loi: Dap an khong hop le! Vui long chi nhap A, B, C, hoac D."
         return
     fi
     
-    dap_an=$(echo "$dap_an" | tr '[:lower:]' '[:upper:]')
     echo "$dap_an" >> "$FILE_TRALOI"
     echo "=> Da them dap an thanh cong."
 }
@@ -78,7 +90,7 @@ xuat_de_va_cham_diem() {
     stt=0
     for dong in $cac_dong_ngau_nhien; do
         cau_hoi=$(sed -n "${dong}p" "$FILE_CAUHOI")
-        dap_an_goc=$(sed -n "${dong}p" "$FILE_TRALOI" | tr '[:lower:]' '[:upper:]')
+        dap_an_goc=$(sed -n "${dong}p" "$FILE_TRALOI" | tr -d '\r' | tr '[:lower:]' '[:upper:]')
         
         # Hien thi cau hoi
         echo "Câu $((stt + 1)): $cau_hoi"
@@ -121,7 +133,7 @@ xuat_de_va_cham_diem() {
     # TONG KET DIEM SO
     echo "======================================================="
     echo "So cau dung: $so_cau_dung / $so_luong"
-    diem=$(echo "scale=2; ($so_cau_dung * 10) / $so_luong" | bc)
+    diem=$(awk -v dung="$so_cau_dung" -v tong="$so_luong" 'BEGIN { printf "%.2f", (dung * 10) / tong }')
     echo "Diem: $diem / 10.0"
     echo "======================================================="
 }
