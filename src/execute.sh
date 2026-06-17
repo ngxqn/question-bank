@@ -12,18 +12,18 @@ if [ ! -f "$FILE_CAUHOI" ] || [ ! -f "$FILE_TRALOI" ]; then
 fi
 
 # Định nghĩa các mã màu ANSI (Cyan & Slate Gray theme)
-CYAN='\033[0;36m'
-BOLD_CYAN='\033[1;36m'
-GRAY='\033[0;90m'      # Slate Gray
-WHITE='\033[0;37m'
-BOLD_WHITE='\033[1;37m'
-GREEN='\033[0;32m'
-BOLD_GREEN='\033[1;32m'
-RED='\033[0;31m'
-BOLD_RED='\033[1;31m'
-YELLOW='\033[0;33m'
-BOLD_YELLOW='\033[1;33m'
-RESET='\033[0m'
+CYAN=$'\033[0;36m'
+BOLD_CYAN=$'\033[1;36m'
+GRAY=$'\033[0;90m'      # Slate Gray
+WHITE=$'\033[0;37m'
+BOLD_WHITE=$'\033[1;37m'
+GREEN=$'\033[0;32m'
+BOLD_GREEN=$'\033[1;32m'
+RED=$'\033[0;31m'
+BOLD_RED=$'\033[1;31m'
+YELLOW=$'\033[0;33m'
+BOLD_YELLOW=$'\033[1;33m'
+RESET=$'\033[0m'
 
 # Kiểm tra số lượng câu hỏi và đáp án có khớp nhau không
 tong_so_cau=$(wc -l < "$FILE_CAUHOI")
@@ -234,7 +234,7 @@ xuat_de_va_cham_diem() {
             status_print="   ${RED}✘ SAI${RESET}      "
         fi
         
-        printf "  ${GRAY}│${RESET} Câu %-4d ${GRAY}│${RESET}           %-13s ${GRAY}│${RESET}     %-6s ${GRAY}│${RESET}%s${GRAY}│${RESET}\n" "$((i + 1))" "$user_ans" "$true_ans" "$status_print"
+        printf "  ${GRAY}│${RESET} Câu %-3d ${GRAY}│${RESET}           %-12s ${GRAY}│${RESET}     %-5s ${GRAY}│${RESET}%s${GRAY}│${RESET}\n" "$((i + 1))" "$user_ans" "$true_ans" "$status_print"
     done
     
     echo -e "  ${GRAY}└─────────┴────────────────────────┴───────────┴──────────────┘${RESET}"
